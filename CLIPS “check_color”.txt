@@ -1,0 +1,25 @@
+CLIPS> (deftemplate individual
+   (slot hair-color))
+
+CLIPS> (defrule check_color
+   (individual (hair-color ?c&~black&~brown))
+   =>
+   (printout t "Hair color is: " ?c crlf))
+
+CLIPS> (assert (individual (hair-color red)))
+
+<Fact-1>
+CLIPS> (assert (individual (hair-color blonde)))
+
+<Fact-2>
+CLIPS> (assert (individual (hair-color black)))
+
+<Fact-3>
+CLIPS> (assert (individual (hair-color brown)))
+
+<Fact-4>
+CLIPS> (run)
+
+Hair color is: blonde
+Hair color is: red
+CLIPS> 

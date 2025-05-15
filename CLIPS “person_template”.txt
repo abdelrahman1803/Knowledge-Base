@@ -1,0 +1,29 @@
+CLIPS> (deftemplate person
+  (multislot name
+    (type SYMBOL STRING)
+    (cardinality 2 4))
+  (slot age
+    (type INTEGER)
+    (range 20 25)))
+
+CLIPS> (defrule print-person
+  ?p <- (person (name $?n) (age ?a))
+  =>
+  (printout t "Person: " ?n " | Age: " ?a crlf))
+
+CLIPS> (assert (person (name "Abdelrahman" "Ashraf") (age 22)))
+
+<Fact-1>
+CLIPS> (assert (person (name "Salma" "Khaled" "Nour") (age 25)))
+
+<Fact-2>
+CLIPS> (run)
+
+Person: ("Salma" "Khaled" "Nour") | Age: 25
+Person: ("Abdelrahman" "Ashraf") | Age: 22
+CLIPS> (facts)
+
+f-1     (person (name "Abdelrahman" "Ashraf") (age 22))
+f-2     (person (name "Salma" "Khaled" "Nour") (age 25))
+For a total of 2 facts.
+CLIPS> 
